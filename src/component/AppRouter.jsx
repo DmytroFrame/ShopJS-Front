@@ -1,14 +1,17 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import { Switch, Route, Redirect } from 'react-router-dom'
 import { authRouter, publicRoutes } from '../routes'
 import { SHOP_ROUTE } from '../utils/consts'
-
+import { Context } from '../index'
 
 export default function AppRouter() {
-    const isAuth = false
+    // const context = useContext(contextValue);
+    const { user } = useContext(Context)
+
+    console.log(user)
     return (
         <Switch>
-            {isAuth && authRouter.map(({path, Component}) => 
+            {user.isAuth && authRouter.map(({path, Component}) => 
                 <Route ket={path} path={path} component={Component} exact/>
             )}
             {publicRoutes.map(({path, Component}) => 
